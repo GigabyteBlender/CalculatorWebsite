@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    
     <div class="calculator">
-
-        <div class="console" id="console"></div>
-        <div class="numpad">
-            <button onclick="appendNumber('1')">1</button>
-            <button onclick="appendNumber('2')">2</button>
-            <button onclick="appendNumber('3')">3</button>
-            <button onclick="appendOperator('+')">+</button>
-            <button onclick="appendNumber('4')">4</button>
-            <button onclick="appendNumber('5')">5</button>
-            <button onclick="appendNumber('6')">6</button>
-            <button onclick="appendOperator('-')">-</button>
-            <button onclick="appendNumber('7')">7</button>
-            <button onclick="appendNumber('8')">8</button>
-            <button onclick="appendNumber('9')">9</button>
-            <button onclick="appendOperator('*')">*</button>
-            <button onclick="appendNumber('0')">0</button>
-            <button onclick="clearInput()">C</button>
-            <button onclick="deleteLast()">DEL</button>
-            <button onclick="appendOperator('/')">/</button>
-            <button onclick="calculate()">=</button>
+        <div class="console">
+            <div id="console"></div>
         </div>
+        <div class="numpad">
+            <button onclick="appendNumber('1')" aria-label="1">1</button>
+            <button onclick="appendNumber('2')" aria-label="2">2</button>
+            <button onclick="appendNumber('3')" aria-label="3">3</button>
+            <button onclick="appendOperator('+')" aria-label="Add">+</button>
+
+            <button onclick="appendNumber('4')" aria-label="4">4</button>
+            <button onclick="appendNumber('5')" aria-label="5">5</button>
+            <button onclick="appendNumber('6')" aria-label="6">6</button>
+            <button onclick="appendOperator('-')" aria-label="Subtract">-</button>
+
+            <button onclick="appendNumber('7')" aria-label="7">7</button>
+            <button onclick="appendNumber('8')" aria-label="8">8</button>
+            <button onclick="appendNumber('9')" aria-label="9">9</button>
+            <button onclick="appendOperator('*')" aria-label="Multiply">*</button>
+
+            <button onclick="appendNumber('0')" aria-label="0">0</button>
+            <button onclick="clearInput()" aria-label="Clear">C</button>
+            <button onclick="deleteLast()" aria-label="Delete">DEL</button>
+            <button onclick="appendOperator('/')" aria-label="Divide">/</button>
+
+            <button onclick="calculate()" aria-label="Calculate" class="calculate-button">=</button>
+        </div>
+        <div id="result"></div>
     </div>
-
     <script src="scripts.js"></script>
-
 </body>
 </html>

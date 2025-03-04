@@ -1,19 +1,52 @@
+:root {
+    --main-bg-color: black;
+    --calculator-bg-color: #f0f0f0;
+    --button-bg-color: #e0e0e0;
+    --button-hover-color: #d0d0d0;
+    --text-color: #333;
+    --font-family: 'Roboto Mono', Courier, monospace;
+}
+
+body {
+    background-image: url('background.jpg');
+    background-color: var(--main-bg-color);
+    background-size: cover;
+    background-position-y: 100px;
+    background-repeat: no-repeat;
+    font-family: var(--font-family);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
 .calculator {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.calculator input {
-    margin: 5px;
+    background-color: var(--calculator-bg-color);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-body {
-    background-image: url('background.jpg');
-    background-color: black;
-    background-size: cover;
-    background-position-y: 100px;
-    background-repeat: no-repeat;
+.console {
+    margin-bottom: 20px;
+    font-size: 35px;
+    max-width: 650px;
+    height: 50px;
+    width: 100%;
+    text-align: right;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    overflow: hidden; /* Prevent text from overflowing */
+    white-space: nowrap; /* Keep text on one line */
 }
 
 .numpad {
@@ -24,33 +57,46 @@ body {
 }
 
 .numpad button {
-    padding: 30px; /* Increased padding */
-    font-size: 24px; /* Increased font size */
+    padding: 30px;
+    font-size: 24px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f0f0f0;
+    background-color: var(--button-bg-color);
     cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.numpad button:hover {
+    background-color: var(--button-hover-color);
 }
 
 .numpad button:active {
     background-color: #ddd;
 }
 
-.console {
-    margin-bottom: 20px;
-    font-size: 35px;
-    font-family: 'Roboto', Courier, monospace;
-    max-width: 650px;
-    height: 50px;
-    width: 100%;
-    text-align: right;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
+.calculate-button { /* Style for the Calculate button */
+    grid-column: span 1; /* Make it span one column */
+    background-color: #4CAF50;
+    color: white;
 }
 
 #result {
     font-size: 24px;
     margin-top: 10px;
+}
+
+/*  Responsiveness  */
+@media (max-width: 600px) {
+    .calculator {
+        width: 90%;
+    }
+
+    .numpad button {
+        padding: 20px;
+        font-size: 20px;
+    }
+
+    .console {
+        font-size: 28px;
+    }
 }

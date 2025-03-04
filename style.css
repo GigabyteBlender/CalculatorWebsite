@@ -1,14 +1,13 @@
 :root {
-    --main-bg-color: black;
-    --calculator-bg-color: #f0f0f0;
-    --button-bg-color: #e0e0e0;
+    --main-bg-color: rgb(0, 0, 0);
+    --calculator-bg-color: #ffd0d0;
+    --button-bg-color: #bcbcbc;
     --button-hover-color: #d0d0d0;
     --text-color: #333;
     --font-family: 'Roboto Mono', Courier, monospace;
 }
 
 body {
-    background-image: url('background.jpg');
     background-color: var(--main-bg-color);
     background-size: cover;
     background-position-y: 100px;
@@ -44,7 +43,7 @@ body {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: #919191;
     overflow: hidden; /* Prevent text from overflowing */
     white-space: nowrap; /* Keep text on one line */
 }

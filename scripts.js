@@ -3,25 +3,45 @@
 // Buffer to store the current input
 let buffer = '';
 
-// Function to append a number to the buffer
+/**
+ * Appends a number to the input buffer and updates the console display.
+ *
+ * @param {string} number - The number to append.
+ */
+
 function appendNumber(number) {
     buffer += number;
     updateConsole();
 }
 
-// Function to append an operator to the buffer
+/**
+ * Appends an operator to the input buffer, adding spaces around it for clarity,
+ * and updates the console display.
+ *
+ * @param {string} operator - The operator to append.
+ */
+
 function appendOperator(operator) {
     buffer += ' ' + operator + ' ';
     updateConsole();
 }
 
-// Function to append a bracket to the buffer
+/**
+ * Appends a bracket (either '(' or ')') to the input buffer and updates the
+ * console display.
+ *
+ * @param {string} bracket - The bracket to append.
+ */
+
 function appendBracket(bracket) {
     buffer += bracket;
     updateConsole();
 }
 
-// Function to clear the input buffer
+/**
+ * Clears the input buffer, effectively resetting the calculator display to empty,
+ * and updates the console display.
+ */
 function clearInput() {
     buffer = '';
     updateConsole();
@@ -35,28 +55,40 @@ document.addEventListener('keydown', function(event) {
     // Append number or decimal point to buffer
     if (!isNaN(parseInt(key)) || key === '.') {
         appendNumber(key);
-    // Append operator to buffer
+        // Append operator to buffer
     } else if (['+', '-', '*', '/'].includes(key)) {
         appendOperator(key);
-    // Append bracket to buffer
+        // Append bracket to buffer
     } else if (key === '(' || key === ')') {
         appendBracket(key);
-    // Calculate result on Enter key press
+        // Calculate result on Enter key press
     } else if (key === 'Enter') {
         calculate();
-    // Clear input on Escape key press
+        // Clear input on Escape key press
     } else if (key === 'Escape') {
         clearInput();
-    // Delete last character on Backspace key press
+        // Delete last character on Backspace key press
     } else if (key === 'Backspace') {
         deleteLast();
     }
 });
 
-// Function to delete the last character or operator from the buffer
+/**
+ * Deletes the last character or operator from the input buffer. If the last
+ * character is part of an operator (e.g., ' + ', ' - '), it removes the whole
+ * operator including surrounding spaces. Updates the console display to reflect
+ * the change.
+ */
 function deleteLast() {
     buffer = buffer.trim();
-    if (buffer.endsWith('+') || buffer.endsWith('-') || buffer.endsWith('*') || buffer.endsWith('/') || buffer.endsWith('(') || buffer.endsWith(')')) {
+    if (
+        buffer.endsWith('+') ||
+        buffer.endsWith('-') ||
+        buffer.endsWith('*') ||
+        buffer.endsWith('/') ||
+        buffer.endsWith('(') ||
+        buffer.endsWith(')')
+    ) {
         buffer = buffer.slice(0, -2);
     } else {
         buffer = buffer.slice(0, -1);
@@ -64,12 +96,22 @@ function deleteLast() {
     updateConsole();
 }
 
-// Function to update the console display
+/**
+ * Updates the calculator's console display with the current value of the input
+ * buffer. This function is essential for showing user input and calculation
+ * results.
+ */
 function updateConsole() {
     document.getElementById('console').innerText = buffer;
 }
 
-// Main function to perform the calculation
+/**
+ * Main function to perform the calculation. It parses the expression in the
+ * input buffer, calculates the result, and updates the console display with
+ * the result. If an error occurs during calculation (e.g., division by zero,
+ * mismatched parentheses), it catches the error and displays an error message
+ * on the console.
+ */
 function calculate() {
     try {
         const result = parseAndCalculate(buffer);
@@ -80,11 +122,16 @@ function calculate() {
     }
 }
 
-// Function to parse and calculate the expression
+/**
+ * Parses and calculates the expression.
+ *
+ * @param {string} expression - The mathematical expression to parse and calculate.
+ * @returns {number} The result of the calculation.
+ */
+
 function parseAndCalculate(expression) {
     // Remove spaces from the expression
     expression = expression.replace(/\s/g, '');
-
     try {
         // Evaluate the expression
         return evaluateExpression(expression);
@@ -93,7 +140,13 @@ function parseAndCalculate(expression) {
     }
 }
 
-// Function to evaluate the expression using Shunting Yard algorithm
+/**
+ * Evaluates the expression using the Shunting Yard algorithm.
+ *
+ * @param {string} expression - The expression to evaluate.
+ * @returns {number} The result of the evaluation.
+ */
+
 function evaluateExpression(expression) {
     if (!expression) {
         return 0;
@@ -115,6 +168,7 @@ function evaluateExpression(expression) {
     for (const token of tokens) {
         if (!isNaN(parseFloat(token))) {
             outputQueue.push(parseFloat(token));
+		
         } else if (['+', '-', '*', '/'].includes(token)) {
             while (
                 operatorStack.length > 0 &&
@@ -126,6 +180,7 @@ function evaluateExpression(expression) {
             operatorStack.push(token);
         } else if (token === '(') {
             operatorStack.push(token);
+			
         } else if (token === ')') {
             while (operatorStack.length > 0 && operatorStack[operatorStack.length - 1] !== '(') {
                 outputQueue.push(operatorStack.pop());
@@ -149,7 +204,12 @@ function evaluateExpression(expression) {
     return evaluateRPN(outputQueue);
 }
 
-// Function to tokenize the expression into numbers and operators
+/**
+ * Tokenizes the expression into numbers and operators.
+ *
+ * @param {string} expression - The expression to tokenize.
+ * @returns {Array<string>} An array of tokens.
+ */
 function tokenize(expression) {
     const tokens = [];
     let currentNumber = '';
@@ -175,7 +235,20 @@ function tokenize(expression) {
     return tokens;
 }
 
-// Function to evaluate Reverse Polish Notation (RPN)
+/**
+ * Evaluates an array of tokens in Reverse Polish Notation (RPN) to compute a
+ * numerical result. This function processes numbers by pushing them onto a stack
+ * and performs calculations based on operators encountered, using the stack to
+ * retrieve operands.
+ *
+ * @param {Array<string|number>} tokens - An array of tokens in RPN format, where
+ * each token is either a number (as a string or number type) or an operator
+ * (+, -, *, /).
+ * @returns {number} The result of the calculation performed according to the RPN
+ * expression.
+ * @throws {Error} If the expression is invalid (e.g., not enough values in the
+ * stack for an operator, division by zero).
+ */
 function evaluateRPN(tokens) {
     let stack = [];
 
@@ -191,7 +264,9 @@ function evaluateRPN(tokens) {
 
             switch (token) {
                 case '/':
-                    if (b === 0) {throw new Error('Division by zero');}
+                    if (b === 0) {
+                        throw new Error('Division by zero');
+                    }
                     stack.push(a / b);
                     break;
                 case '*':

@@ -1,101 +1,166 @@
 :root {
+    /* Main background color for the page */
     --main-bg-color: rgb(0, 0, 0);
+
+    /* Background color for the calculator */
     --calculator-bg-color: #e0e0e0;
+
+    /* Background color for the buttons */
     --button-bg-color: #bcbcbc;
+
+    /* Hover color for the buttons */
     --button-hover-color: #d0d0d0;
+
+    /* Text color for the calculator */
     --text-color: #333;
+
+    /* Font family for the calculator text */
     --font-family: 'Roboto Mono', Courier, monospace;
 }
 
 body {
+    /* Set the background color */
     background-color: var(--main-bg-color);
+    /* Cover the entire background */
     background-size: cover;
+    /* Set the background position */
     background-position-y: 100px;
+    /* Do not repeat the background image */
     background-repeat: no-repeat;
+    /* Use the specified font family */
     font-family: var(--font-family);
+    /* Set the text color */
     color: var(--text-color);
+    /* Remove default margins */
     margin: 0;
+    /* Remove default padding */
     padding: 0;
+    /* Use flexbox for centering content */
     display: flex;
+    /* Center content horizontally */
     justify-content: center;
+    /* Center content vertically */
     align-items: center;
+    /* Ensure the content takes at least the full height of the viewport */
     min-height: 100vh;
 }
 
 .calculator {
+    /* Add margin to the top of the calculator */
     margin-top: 20px;
+    /* Use flexbox to arrange items in a column */
     display: flex;
+    /* Arrange items in a column */
     flex-direction: column;
+    /* Center items horizontally */
     align-items: center;
+    /* Set the background color for the calculator */
     background-color: var(--calculator-bg-color);
+    /* Add rounded corners */
     border-radius: 10px;
+    /* Add padding around the content */
     padding: 20px;
+    /* Add a shadow to the calculator */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .console {
+    /* Add margin to the bottom of the console */
     margin-bottom: 20px;
+    /* Set the font size for the console text */
     font-size: 35px;
+    /* Set the maximum width of the console */
     max-width: 650px;
+    /* Set the height of the console */
     height: 50px;
+    /* Make the console take up full width */
     width: 100%;
+    /* Align text to the right */
     text-align: right;
+    /* Add padding inside the console */
     padding: 10px;
+    /* Add a border around the console */
     border: 1px solid #ccc;
+    /* Add rounded corners */
     border-radius: 5px;
+    /* Set the background color of the console */
     background-color: #919191;
-    overflow: hidden; /* Prevent text from overflowing */
-    white-space: nowrap; /* Keep text on one line */
+    /* Prevent text from overflowing */
+    overflow: hidden;
+    /* Keep text on one line */
+    white-space: nowrap;
 }
 
 .numpad {
+    /* Use grid layout for the numpad */
     display: grid;
+    /* Define the number of columns */
     grid-template-columns: repeat(4, 1fr);
+    /* Add gap between the grid items */
     gap: 10px;
+    /* Add margin to the top of the numpad */
     margin-top: 10px;
 }
 
 .numpad button {
+    /* Add padding to the buttons */
     padding: 30px;
+    /* Set the font size for the button text */
     font-size: 24px;
+    /* Add a border around the buttons */
     border: 1px solid #ccc;
+    /* Add rounded corners */
     border-radius: 5px;
+    /* Set the background color for the buttons */
     background-color: var(--button-bg-color);
+    /* Change the cursor to a pointer on hover */
     cursor: pointer;
+    /* Add a transition effect for the background color */
     transition: background-color 0.2s ease;
 }
 
 .numpad button:hover {
-    background-color: var(--button-hover-color);
+/* Change the background color on hover */
+background-color: var(--button-hover-color);
 }
 
 .numpad button:active {
-    background-color: #ddd;
+/* Change the background color when the button is active/clicked */
+background-color: #ddd;
 }
 
-.calculate-button { /* Style for the Calculate button */
-    grid-column: span 1; /* Make it span one column */
-    background-color: #4CAF50;
-    color: rgb(0, 0, 0);
+.calculate-button {
+/* Make it span one column */
+grid-column: span 1;
+/* Set the background color for the Calculate button */
+background-color: #4CAF50;
+/* Set the text color */
+color: rgb(0, 0, 0);
 }
 
 #result {
-    font-size: 24px;
-    margin-top: 10px;
+/* Set the font size for the result */
+font-size: 24px;
+/* Add margin to the top of the result */
+margin-top: 10px;
 }
 
-/*  Responsiveness  */
+/* Responsiveness */
 @media (max-width: 600px) {
     .calculator {
+        /* Make the calculator take up 90% of the width */
         width: 90%;
     }
 
     .numpad button {
+        /* Reduce padding for smaller screens */
         padding: 20px;
+        /* Reduce font size for smaller screens */
         font-size: 20px;
     }
 
     .console {
+        /* Reduce font size for smaller screens */
         font-size: 28px;
     }
-}
+}  

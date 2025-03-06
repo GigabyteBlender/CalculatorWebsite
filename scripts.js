@@ -28,19 +28,26 @@ function clearInput() {
 }
 
 // --- Keyboard Support ---
+// Add event listener for keydown events to support keyboard input
 document.addEventListener('keydown', function(event) {
     const key = event.key;
 
+    // Append number or decimal point to buffer
     if (!isNaN(parseInt(key)) || key === '.') {
         appendNumber(key);
+    // Append operator to buffer
     } else if (['+', '-', '*', '/'].includes(key)) {
         appendOperator(key);
+    // Append bracket to buffer
     } else if (key === '(' || key === ')') {
         appendBracket(key);
+    // Calculate result on Enter key press
     } else if (key === 'Enter') {
         calculate();
+    // Clear input on Escape key press
     } else if (key === 'Escape') {
         clearInput();
+    // Delete last character on Backspace key press
     } else if (key === 'Backspace') {
         deleteLast();
     }

@@ -1,6 +1,6 @@
 :root {
     --main-bg-color: rgb(0, 0, 0);
-    --calculator-bg-color: #ffd0d0;
+    --calculator-bg-color: #e0e0e0;
     --button-bg-color: #bcbcbc;
     --button-hover-color: #d0d0d0;
     --text-color: #333;
@@ -76,7 +76,7 @@ body {
 .calculate-button { /* Style for the Calculate button */
     grid-column: span 1; /* Make it span one column */
     background-color: #4CAF50;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 #result {
